@@ -1,0 +1,39 @@
+# The parent line must be the first non-comment line in the file
+# This line defines the product name and version
+parent marley	v1_0_0
+defaultqual	e14
+#
+incdir	product_dir	include
+fcldir  -
+libdir	fq_dir		lib
+bindir	fq_dir		bin
+#
+# the 4th field may be either optional or only_for_build
+product		version
+root		v6_08_06g
+cetbuildtools	v5_14_00	-	only_for_build	
+end_product_list
+ 
+# e14  - with gcc 6.3.0 and -std=c++14
+qualifier	root	 	notes
+e14:debug	e14:nu:debug
+e14:opt		e14:nu:opt
+e14:prof	e14:nu:prof
+end_qualifier_list
+
+# this is a table file fragment
+# it will be copied verbatim
+table_fragment_begin
+    # add ${UPS_PROD_DIR}/structure to FW_SEARCH_PATH
+    pathPrepend(FW_SEARCH_PATH, ${UPS_PROD_DIR}/structure )
+    # add ${UPS_PROD_DIR}/react to FW_SEARCH_PATH
+    pathPrepend(FW_SEARCH_PATH, ${UPS_PROD_DIR}/react )
+table_fragment_end
+
+# Preserve tabs and formatting in emacs and vi / vim:
+
+### Local Variables:
+### tab-width: 8
+### End:
+
+# vi:set ts=8 noexpandtab:
