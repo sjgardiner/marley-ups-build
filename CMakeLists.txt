@@ -45,7 +45,7 @@ ExternalProject_Add(marley
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/marley
   STAMP_DIR ${CMAKE_CURRENT_BINARY_DIR}/stamp
   TMP_DIR  ${CMAKE_CURRENT_BINARY_DIR}/tmp
-  GIT_REPOSITORY git@bitbucket.org:sjgardiner/marley.git 
+  GIT_REPOSITORY https://github.com/sjgardiner/marley.git
   GIT_TAG v1.0.0
   SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley
   BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley/build
