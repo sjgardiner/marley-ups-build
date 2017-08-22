@@ -35,24 +35,29 @@ include(UseCPack)
 
 include(ExternalProject)
 
+set(UPS_PRODUCT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+message("${UPS_PRODUCT_SOURCE_DIR}/marley.txt")
+
 # Retrieve the appropriate version of MARLEY from the public git
 # repository, then use GNU make to build it
 ExternalProject_Add(marley
-  PREFIX marley
-  STAMP_DIR ./stamp
-  TMP_DIR  ./tmp
+  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/marley
+  STAMP_DIR ${CMAKE_CURRENT_BINARY_DIR}/stamp
+  TMP_DIR  ${CMAKE_CURRENT_BINARY_DIR}/tmp
   GIT_REPOSITORY git@bitbucket.org:sjgardiner/marley.git 
   GIT_TAG v1.0.0
-  SOURCE_DIR ./marley
-  BINARY_DIR ./marley/build
-  UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ""
-  BUILD_COMMAND make VERBOSE=1
+  SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley
+  BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley/build
+  UPDATE_COMMAND ${CMAKE_COMMAND} -E remove -f
+    ${CMAKE_CURRENT_BINARY_DIR}/marley/build/Makefile
+    ${CMAKE_CURRENT_BINARY_DIR}/marley/CMakeLists.txt
+    COMMAND ${CMAKE_COMMAND} -E copy ${UPS_PRODUCT_SOURCE_DIR}/marley.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/marley/
+    COMMAND ${CMAKE_COMMAND} -E rename
+    ${CMAKE_CURRENT_BINARY_DIR}/marley/marley.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/marley/CMakeLists.txt
   INSTALL_COMMAND ""
-  TEST_COMMAND ""
-  LOG_DOWNLOAD 1
-  LOG_BUILD 1
-  LOG_INSTALL 1
 )
 
 ExternalProject_Get_Property(marley binary_dir)
