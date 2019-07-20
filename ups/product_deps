@@ -1,7 +1,7 @@
 # The parent line must be the first non-comment line in the file
 # This line defines the product name and version
-parent marley	v1_0_0
-defaultqual	e14
+parent marley	v1_1_1
+defaultqual	e17
 #
 incdir	product_dir	include
 fcldir  -
@@ -10,15 +10,14 @@ bindir	fq_dir		bin
 #
 # the 4th field may be either optional or only_for_build
 product		version
-root		v6_08_06g
-cetbuildtools	v5_14_00	-	only_for_build	
+root	 	v6_12_06a
+cetbuildtools 	v7_13_02	-	only_for_build
 end_product_list
  
-# e14  - with gcc 6.3.0 and -std=c++14
 qualifier	root	 	notes
-e14:debug	e14:nu:debug
-e14:opt		e14:nu:opt
-e14:prof	e14:nu:prof
+e17:debug	e17:debug
+e17:opt		e17:opt
+e17:prof	e17:prof
 end_qualifier_list
 
 # this is a table file fragment

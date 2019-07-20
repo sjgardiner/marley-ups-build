@@ -8,10 +8,10 @@ ups](https://cdcvs.fnal.gov/redmine/projects/ups/wiki/Documentation)
 
 ## Prerequisites
 
-To build the marley v1_0_0 ups product, two other ups products must be set up
+To build the marley v1_1_1 ups product, two other ups products must be set up
 first:
-  - cetbuildtools v5_14_00
-  - root v6_08_06g
+  - cetbuildtools v7_13_02
+  - root v6_12_06a
 
 ## Build procedure
 

@@ -41,22 +41,17 @@ message("${UPS_PRODUCT_SOURCE_DIR}/marley.txt")
 
 # Retrieve the appropriate version of MARLEY from the public git
 # repository, then use GNU make to build it
+set ( MARLEY_CXXFLAGS "-O3 -std=c++17" )
 ExternalProject_Add(marley
   PREFIX ${CMAKE_CURRENT_BINARY_DIR}/marley
   STAMP_DIR ${CMAKE_CURRENT_BINARY_DIR}/stamp
   TMP_DIR  ${CMAKE_CURRENT_BINARY_DIR}/tmp
   GIT_REPOSITORY https://github.com/sjgardiner/marley.git
-  GIT_TAG v1.0.0
+  #GIT_TAG v1.1.1
   SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley
   BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/marley/build
-  UPDATE_COMMAND ${CMAKE_COMMAND} -E remove -f
-    ${CMAKE_CURRENT_BINARY_DIR}/marley/build/Makefile
-    ${CMAKE_CURRENT_BINARY_DIR}/marley/CMakeLists.txt
-    COMMAND ${CMAKE_COMMAND} -E copy ${UPS_PRODUCT_SOURCE_DIR}/marley.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/marley/
-    COMMAND ${CMAKE_COMMAND} -E rename
-    ${CMAKE_CURRENT_BINARY_DIR}/marley/marley.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/marley/CMakeLists.txt
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND make CXXFLAGS=${MARLEY_CXXFLAGS}
   INSTALL_COMMAND ""
 )
 
